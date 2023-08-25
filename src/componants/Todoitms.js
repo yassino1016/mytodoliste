@@ -7,6 +7,7 @@ import EditTodo from './EditTodo';
 
 const Todoitms = () => {
   const [todos, setTodos] = useState([]);
+  const [editingTodoId, setEditingTodoId] = useState(null); 
 
  
   const addTodo = todo => {
@@ -25,20 +26,38 @@ const Todoitms = () => {
 const toggleComplete= id =>{
   setTodos(todos.map(todo => todo.id === id ? {...todo, completed:!todo.completed} : todo ))
 }
-const Deletetodo= id  =>
+const Deletetodo= id  =>{
 setTodos(todos.filter(todo => todo.id !== id))
+}
+const Edittodo = id => {
+  setEditingTodoId(id);
+  setTodos(todos.map(todo => ({ ...todo, isEditing: todo.id === editingTodoId })));
+};
 
-const Edittodo= id  =>
-setTodos(todos.map(todo => todo.id === id ?
-   {...todo, isEditing:!todo.isEditing} : todo ))
 
-const edittask= (task,id) =>
-setTodos(todos.map(todo => todo.id === id ?
-   {...todo,task, isEditing:!todo.isEditing} : todo ))
+const edittask = (newTask, id) => {
+  // Check if the newTask is empty
+  if (newTask.trim() === "") {
+    alert("New todo cannot be empty.");
+    return;
+  }
+
+  // Check if the newTask already exists
+  const taskExists = todos.some(todo => todo.task === newTask && todo.id !== id);
+  if (taskExists) {
+    alert("todo already exists.");
+    return;
+  }
+
+  setTodos(todos.map(todo => 
+    todo.id === id ? { ...todo, task: newTask, isEditing: !todo.isEditing } : todo
+  ));
+};
+
 
   return (
     <div className='Todoitms'>
-      <h1>My plans for todo</h1>
+      <h1> My plans for todo </h1>
       <TodoForm addTodo={addTodo} />
       {todos.map((todo, index) => (
   todo.isEditing ? 
@@ -51,12 +70,10 @@ setTodos(todos.map(todo => todo.id === id ?
       key={index} 
       toggleComplete={toggleComplete}
       Deletetodo={Deletetodo} 
-      Edittodo={Edittodo} />
+      Edittodo={Edittodo}
+      isMasked={editingTodoId !== null && editingTodoId !== todo.id}  />
   )
 ))}
-      <div className='alert-message'>
-        
-      </div>
     </div>
   );
 };

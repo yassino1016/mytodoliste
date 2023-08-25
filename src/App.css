@@ -8,7 +8,7 @@
 }
 
 body {
-  background: #7ba2f0;
+  background: #42e1ed;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,7 +25,7 @@ h1 {
 }
 
 .Todoitms {
-  background: #088da5;
+  background: #3ff3d8;
   margin-top: 5rem;
   padding: 2rem;
   border-radius: 5px;
@@ -37,32 +37,34 @@ h1 {
 
 .todo-input {
   outline: none;
-  background: none;
-  border: 1px solid #58ffab;
-  padding: 0.5rem 1rem;
+  background-color: #fff;
+  border: turquoise;
   margin-top: 1rem;
   margin-bottom: 2rem;
   width: 300px;
-  color: #fff;
+  color: #000000;
   border-radius: 6px;
+  padding: 15px;
+  font-family:Arial ;
+  font-size: larger;
 }
 
-.todo-input::placeholder {
-  color: #ffffff4d;
-}
+
 
 .todo-btn {
-  background: #aabbdd;
+  background: #d9f885;
   color: #fff;
-  border: none;
-  padding: 0.5rem 1rem;
+  border: transparent;
+  padding:15px;
   cursor: pointer;
   border-radius: 6px;
-  margin-left: 5px;
-
-  
+  margin-left: 15px;
+  font-family:Arial ;
+  font-size: larger;
 }
-
+.todo-btn:hover {
+  background-color: #b4e051; /* New background color on hover */
+}
 .Todo {
   display: flex;
   justify-content: space-between;
@@ -83,10 +85,27 @@ h1 {
   color: #010101;
   text-decoration: line-through;
 }
-.alert {
-  color: red;
-  background-color: yellow;
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 10px;
+.masked {
+  opacity: 0.5; /* Adjust the opacity to your preference */
+  pointer-events: none; /* Prevent interactions with masked todos */
 }
+.icon-btn  {
+  font-size: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.edit-icon {
+  color: #007bff; /* Color for the edit icon */
+}
+
+.delete-icon {
+  color: #dc3545; /* Color for the delete icon */
+}
+
+.icon-btn:hover {
+  color: #d1ff2c;
+  font-size: 25px;
+}
+

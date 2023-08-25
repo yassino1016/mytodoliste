@@ -18,7 +18,7 @@ const TodoForm = ({ addTodo }) => {
         value={value} // Bind input value to state
         onChange={e => setValue(e.target.value)}
       />
-      <button type="submit" className='todo-btn'>add</button>
+      <button type="submit" className='todo-btn'>add new todo</button>
     </form>
   );
 };
